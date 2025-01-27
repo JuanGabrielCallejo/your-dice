@@ -3,9 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import Dice from "./components/Dice.jsx";
 
 const App = () => {
-  const [texts, setTexts] = useState(["1", "2", "3", "4", "5", "6"]); // Textos de las caras
+  const [texts, setTexts] = useState(["1", "2", "3", "4", "5", "6"]);
 
-  // Función para actualizar los textos
   const handleTextChange = (index, value) => {
     const newTexts = [...texts];
     newTexts[index] = value;
@@ -14,7 +13,7 @@ const App = () => {
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
-      {/* Inputs para personalizar los textos */}
+      {/* Inputs for personalizing the dice sides*/}
       <div style={{ width: "20%", padding: "20px", backgroundColor: "#f0f0f0" }}>
         <h2>Personaliza las caras del dado:</h2>
         {texts.map((text, index) => (
@@ -30,7 +29,7 @@ const App = () => {
         ))}
       </div>
 
-      {/* Canvas de Three.js para renderizar el dado */}
+      {/* Canvas from Three.js to render the dice */}
       <div style={{ width: "80%", height: "100%" }}>
         <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
           <ambientLight intensity={0.5} />

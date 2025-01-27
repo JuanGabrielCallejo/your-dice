@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
+import * as THREE from "three";
 
 const Dice = ({ texts }) => {
   const diceRef = useRef();
@@ -23,22 +24,22 @@ const Dice = ({ texts }) => {
   const rotateToFace = (face) => {
     switch (face) {
       case 1:
-        diceRef.current.rotation.set(0, 0, 0); // Cara frontal
+        diceRef.current.rotation.set(0, 0, 0); // Front side
         break;
       case 2:
-        diceRef.current.rotation.set(0, Math.PI / 2, 0); // Cara derecha
+        diceRef.current.rotation.set(0, Math.PI / 2, 0); // Right side
         break;
       case 3:
-        diceRef.current.rotation.set(Math.PI / 2, 0, 0); // Cara superior
+        diceRef.current.rotation.set(Math.PI / 2, 0, 0); // Left side
         break;
       case 4:
-        diceRef.current.rotation.set(-Math.PI / 2, 0, 0); // Cara inferior
+        diceRef.current.rotation.set(-Math.PI / 2, 0, 0); // Bottom side
         break;
       case 5:
-        diceRef.current.rotation.set(0, -Math.PI / 2, 0); // Cara izquierda
+        diceRef.current.rotation.set(0, -Math.PI / 2, 0); // Left side
         break;
       case 6:
-        diceRef.current.rotation.set(Math.PI, 0, 0); // Cara trasera
+        diceRef.current.rotation.set(Math.PI, 0, 0); // Rear side
         break;
       default:
         break;
@@ -54,8 +55,15 @@ const Dice = ({ texts }) => {
 
   return (
     <mesh ref={diceRef} onClick={handleClick} scale={2}>
+      {/* Cubo del dado */}
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#e13a16" />
+      <meshStandardMaterial color="#ffffff" />
+
+      {/* Aristas negras */}
+      <lineSegments>
+        <edgesGeometry attach="geometry" args={[new THREE.BoxGeometry(1, 1, 1)]} />
+        <lineBasicMaterial attach="material" color="black" />
+      </lineSegments>
 
       {/* Cara 1 (Front) */}
       <Text
@@ -65,6 +73,8 @@ const Dice = ({ texts }) => {
         anchorY="middle"
         color="black"
         rotation={[0, 0, 0]}
+        maxWidth={0.9}
+        textAlign="center"
       >
         {texts[0]}
       </Text>
@@ -77,6 +87,8 @@ const Dice = ({ texts }) => {
         anchorY="middle"
         color="black"
         rotation={[0, Math.PI / 2, 0]}
+        maxWidth={0.9}
+        textAlign="center"
       >
         {texts[1]}
       </Text>
@@ -88,7 +100,9 @@ const Dice = ({ texts }) => {
         anchorX="center"
         anchorY="middle"
         color="black"
-        rotation={[Math.PI / -2, 0, 0]} // Rotación corregida
+        rotation={[Math.PI / -2, 0, 0]}
+        maxWidth={0.9}
+        textAlign="center" 
       >
         {texts[2]}
       </Text>
@@ -100,7 +114,9 @@ const Dice = ({ texts }) => {
         anchorX="center"
         anchorY="middle"
         color="black"
-        rotation={[-Math.PI / -2, 0,0]} // Rotación corregida
+        rotation={[-Math.PI / -2, 0, 0]}
+        maxWidth={0.9}
+        textAlign="center" 
       >
         {texts[3]}
       </Text>
@@ -113,6 +129,8 @@ const Dice = ({ texts }) => {
         anchorY="middle"
         color="black"
         rotation={[0, -Math.PI / 2, 0]}
+        maxWidth={0.9}
+        textAlign="center"
       >
         {texts[4]}
       </Text>
@@ -124,7 +142,9 @@ const Dice = ({ texts }) => {
         anchorX="center"
         anchorY="middle"
         color="black"
-        rotation={[0, Math.PI, 0]}
+        rotation={[0, Math.PI, -3.14]}
+        maxWidth={0.9}
+        textAlign="center"
       >
         {texts[5]}
       </Text>
