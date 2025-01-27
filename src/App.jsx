@@ -1,57 +1,42 @@
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
-import Dice from "./components/Dice";
-import { AmbientLight, PointLight } from "three";
+import Dice from "./components/Dice.jsx";
 
 const App = () => {
-  const [result, setResult] = useState(null);
-  const [texts, setTexts] = useState(["1", "2", "3", "4", "5", "6"]);
+  const [texts, setTexts] = useState(["1", "2", "3", "4", "5", "6"]); // Textos de las caras
 
-  const handleRoll = (face) => {
-    setResult(face);
-  };
-
-  const handleTextChange = (index, newText) => {
-    const updatedTexts = [...texts];
-    updatedTexts[index] = newText;
-    setTexts(updatedTexts);
+  // Función para actualizar los textos
+  const handleTextChange = (index, value) => {
+    const newTexts = [...texts];
+    newTexts[index] = value;
+    setTexts(newTexts);
   };
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      <Canvas>
-        <AmbientLight intensity={0.5} />
-        <PointLight position={[10, 10, 10]} />
-        <OrbitControls />
-        <Stars />
-        <Dice texts={texts} onRoll={handleRoll} />
-      </Canvas>
-
-      <div style={{ margin: "10px", color: "black" }}>
-        {result ? (
-          <h1>Resultado :{texts[result - 1]} </h1>
-        ) : (
-          <h1>Click on the dice to roll it</h1>
-        )}
+    <div style={{ display: "flex", height: "100vh" }}>
+      {/* Inputs para personalizar los textos */}
+      <div style={{ width: "20%", padding: "20px", backgroundColor: "#f0f0f0" }}>
+        <h2>Personaliza las caras del dado:</h2>
+        {texts.map((text, index) => (
+          <div key={index} style={{ marginBottom: "10px" }}>
+            <label>Cara {index + 1}:</label>
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => handleTextChange(index, e.target.value)}
+              style={{ marginLeft: "10px" }}
+            />
+          </div>
+        ))}
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "10px",
-          marginTop: "10px",
-        }}
-      >
-        {texts.map((text, index) => (
-          <input>
-            key={index}
-            type="text" value={text}
-            onChange={(e) => handleTextChange(index, e.target.value)}
-            style={{ padding: "5px", fontsize: "16px" }}
-          </input>
-        ))}
+      {/* Canvas de Three.js para renderizar el dado */}
+      <div style={{ width: "80%", height: "100%" }}>
+        <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Dice texts={texts} />
+        </Canvas>
       </div>
     </div>
   );
