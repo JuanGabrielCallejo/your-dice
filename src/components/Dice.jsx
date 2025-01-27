@@ -3,7 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import * as THREE from "three";
 
-const Dice = ({ texts }) => {
+const Dice = ({ texts, diceColor, textColor }) => {
   const diceRef = useRef();
   const [rotating, setRotating] = useState(false);
   const [result, setResult] = useState(null);
@@ -57,7 +57,7 @@ const Dice = ({ texts }) => {
     <mesh ref={diceRef} onClick={handleClick} scale={2}>
       {/* Cubo del dado */}
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#ffffff" />
+      <meshStandardMaterial color={diceColor} />
 
       {/* Aristas negras */}
       <lineSegments>
@@ -65,13 +65,13 @@ const Dice = ({ texts }) => {
         <lineBasicMaterial attach="material" color="black" />
       </lineSegments>
 
-      {/* Cara 1 (Front) */}
+      {/* Side 1 (Front) */}
       <Text
         position={[0, 0, 0.51]}
         fontSize={0.2}
         anchorX="center"
         anchorY="middle"
-        color="black"
+        color={textColor}
         rotation={[0, 0, 0]}
         maxWidth={0.9}
         textAlign="center"
@@ -79,13 +79,13 @@ const Dice = ({ texts }) => {
         {texts[0]}
       </Text>
 
-      {/* Cara 2 (Right) */}
+      {/* Side 2 (Right) */}
       <Text
         position={[0.51, 0, 0]}
         fontSize={0.2}
         anchorX="center"
         anchorY="middle"
-        color="black"
+        color={textColor}
         rotation={[0, Math.PI / 2, 0]}
         maxWidth={0.9}
         textAlign="center"
@@ -93,13 +93,13 @@ const Dice = ({ texts }) => {
         {texts[1]}
       </Text>
 
-      {/* Cara 3 (Top) */}
+      {/* Side 3 (Top) */}
       <Text
         position={[0, 0.51, 0]}
         fontSize={0.2}
         anchorX="center"
         anchorY="middle"
-        color="black"
+        color={textColor}
         rotation={[Math.PI / -2, 0, 0]}
         maxWidth={0.9}
         textAlign="center" 
@@ -107,13 +107,13 @@ const Dice = ({ texts }) => {
         {texts[2]}
       </Text>
 
-      {/* Cara 4 (Bottom) */}
+      {/* Side 4 (Bottom) */}
       <Text
         position={[0, -0.51, 0]}
         fontSize={0.2}
         anchorX="center"
         anchorY="middle"
-        color="black"
+        color={textColor}
         rotation={[-Math.PI / -2, 0, 0]}
         maxWidth={0.9}
         textAlign="center" 
@@ -121,13 +121,13 @@ const Dice = ({ texts }) => {
         {texts[3]}
       </Text>
 
-      {/* Cara 5 (Left) */}
+      {/* Side 5 (Left) */}
       <Text
         position={[-0.51, 0, 0]}
         fontSize={0.2}
         anchorX="center"
         anchorY="middle"
-        color="black"
+        color={textColor}
         rotation={[0, -Math.PI / 2, 0]}
         maxWidth={0.9}
         textAlign="center"
@@ -135,13 +135,13 @@ const Dice = ({ texts }) => {
         {texts[4]}
       </Text>
 
-      {/* Cara 6 (Back) */}
+      {/* Side 6 (Back) */}
       <Text
         position={[0, 0, -0.51]}
         fontSize={0.2}
         anchorX="center"
         anchorY="middle"
-        color="black"
+        color={textColor}
         rotation={[0, Math.PI, -3.14]}
         maxWidth={0.9}
         textAlign="center"

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import Dice from "./components/Dice.jsx";
+import Dice from "./components/Dice";
+import Customization from "./components/Customization";
 
 const App = () => {
   const [texts, setTexts] = useState(["1", "2", "3", "4", "5", "6"]);
+  const [diceColor, setDiceColor] = useState("#ffffff"); // Estado para el color del dado
+  const [textColor, setTextColor] = useState("#000000"); // Estado para el color del texto
 
+  // function to update text values
   const handleTextChange = (index, value) => {
     const newTexts = [...texts];
     newTexts[index] = value;
@@ -12,9 +16,12 @@ const App = () => {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      {/* Inputs for personalizing the dice sides*/}
-      <div style={{ width: "20%", padding: "20px", backgroundColor: "#f0f0f0" }}>
+    <div style={{ display: "flex", height: "100vh"}}>
+      {/* Personalization panel */}
+      <div
+        style={{ width: "20%", padding: "20px",backgroundColor: "chocolate"  }}
+      >
+        {/* Inputs to personalize the texts */}
         <h2>Personaliza las caras del dado:</h2>
         {texts.map((text, index) => (
           <div key={index} style={{ marginBottom: "10px" }}>
@@ -27,14 +34,20 @@ const App = () => {
             />
           </div>
         ))}
+
+        {/* Component to personalize the dice colors */}
+        <Customization
+          onDiceColorChange={setDiceColor} // Color dice state
+          onTextColorChange={setTextColor} // Color text state
+        />
       </div>
 
-      {/* Canvas from Three.js to render the dice */}
+      {/* Three.js canvas to render the dice */}
       <div style={{ width: "80%", height: "100%" }}>
         <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Dice texts={texts} />
+          <Dice texts={texts} diceColor={diceColor} textColor={textColor} />
         </Canvas>
       </div>
     </div>
