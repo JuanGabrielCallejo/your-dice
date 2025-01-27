@@ -16,10 +16,10 @@ const App = () => {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh"}}>
+    <div style={{ display: "flex", height: "100vh" }}>
       {/* Personalization panel */}
       <div
-        style={{ width: "20%", padding: "20px",backgroundColor: "chocolate"  }}
+        style={{ width: "20%", padding: "20px", backgroundColor: "chocolate" }}
       >
         {/* Inputs to personalize the texts */}
         <h2>Personaliza las caras del dado:</h2>
@@ -44,8 +44,8 @@ const App = () => {
 
       {/* Three.js canvas to render the dice */}
       <div style={{ width: "80%", height: "100%" }}>
-        <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-          <ambientLight intensity={0.5} />
+        <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
+          <ambientLight intensity={5} />
           <pointLight position={[10, 10, 10]} />
           <Dice texts={texts} diceColor={diceColor} textColor={textColor} />
         </Canvas>

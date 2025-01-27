@@ -74,6 +74,7 @@ const Dice = ({ texts, diceColor, textColor }) => {
         color={textColor}
         rotation={[0, 0, 0]}
         maxWidth={0.9}
+        lineHeight={1}
         textAlign="center"
       >
         {texts[0]}
