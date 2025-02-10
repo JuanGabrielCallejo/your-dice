@@ -5,10 +5,10 @@ import Customization from "./components/Customization";
 
 const App = () => {
   const [texts, setTexts] = useState(["1", "2", "3", "4", "5", "6"]);
-  const [diceColor, setDiceColor] = useState("#ffffff"); // Estado para el color del dado
-  const [textColor, setTextColor] = useState("#000000"); // Estado para el color del texto
+  const [diceColor, setDiceColor] = useState("#ffffff"); // Dice color state
+  const [textColor, setTextColor] = useState("#000000"); // Dice text color state
 
-  // function to update text values
+  // Function to update text values
   const handleTextChange = (index, value) => {
     const newTexts = [...texts];
     newTexts[index] = value;
@@ -22,10 +22,10 @@ const App = () => {
         style={{ width: "20%", padding: "20px", backgroundColor: "chocolate" }}
       >
         {/* Inputs to personalize the texts */}
-        <h2>Personaliza las caras del dado:</h2>
+        <h2>CHANGE THE DICE SIDES:</h2>
         {texts.map((text, index) => (
           <div key={index} style={{ marginBottom: "10px" }}>
-            <label>Cara {index + 1}:</label>
+            <label>Face {index + 1}:</label>
             <input
               type="text"
               value={text}

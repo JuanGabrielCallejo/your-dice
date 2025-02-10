@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 
 const Customization = ({ onDiceColorChange, onTextColorChange }) => {
-  const [diceColor, setDiceColor] = useState("#ffffff"); // Color inicial del dado
-  const [textColor, setTextColor] = useState("#000000"); // Color inicial del texto
+  const [diceColor, setDiceColor] = useState("#ffffff"); // Initial dice color
+  const [textColor, setTextColor] = useState("#000000"); // Initial text color
 
-  // Manejar cambios en el color del dado
+  // Handling the dice color changes
   const handleDiceColorChange = (e) => {
     const color = e.target.value;
     setDiceColor(color);
-    onDiceColorChange(color); // Pasar el nuevo color al componente padre
+    onDiceColorChange(color); // Passing the new color to the father
   };
 
-  // Manejar cambios en el color del texto
+  // Handling text color change
   const handleTextColorChange = (e) => {
     const color = e.target.value;
     setTextColor(color);
-    onTextColorChange(color); // Pasar el nuevo color al componente padre
+    onTextColorChange(color); // Passing color to father
   };
 
   return (
     <div style={{ marginBottom: "20px" }}>
-      <h2>Personalización del dado:</h2>
+      <h2>PERSONALIZE YOUR DICE:</h2>
 
-      {/* Input para el color del dado */}
+      {/* Dice color input */}
       <div style={{ marginBottom: "10px" }}>
-        <label>Color del dado: </label>
+        <label>DICE COLOR: </label>
         <input
           type="color"
           value={diceColor}
@@ -32,9 +32,9 @@ const Customization = ({ onDiceColorChange, onTextColorChange }) => {
         />
       </div>
 
-      {/* Input para el color del texto */}
+      {/* Text color input */}
       <div style={{ marginBottom: "10px" }}>
-        <label>Color del texto: </label>
+        <label>TEXT COLOR: </label>
         <input
           type="color"
           value={textColor}

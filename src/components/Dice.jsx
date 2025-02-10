@@ -24,22 +24,22 @@ const Dice = ({ texts, diceColor, textColor }) => {
   const rotateToFace = (face) => {
     switch (face) {
       case 1:
-        diceRef.current.rotation.set(0, 0, 0); // Front side
+        diceRef.current.rotation.set(0, 0, 0); // Front face
         break;
       case 2:
-        diceRef.current.rotation.set(0, Math.PI / 2, 0); // Right side
+        diceRef.current.rotation.set(0, Math.PI / 2, 0); // Right face
         break;
       case 3:
-        diceRef.current.rotation.set(Math.PI / 2, 0, 0); // Left side
+        diceRef.current.rotation.set(Math.PI / 2, 0, 0); // Left face
         break;
       case 4:
-        diceRef.current.rotation.set(-Math.PI / 2, 0, 0); // Bottom side
+        diceRef.current.rotation.set(-Math.PI / 2, 0, 0); // Bottom face
         break;
       case 5:
-        diceRef.current.rotation.set(0, -Math.PI / 2, 0); // Left side
+        diceRef.current.rotation.set(0, -Math.PI / 2, 0); // Left face
         break;
       case 6:
-        diceRef.current.rotation.set(Math.PI, 0, 0); // Rear side
+        diceRef.current.rotation.set(Math.PI, 0, 0); // Rear face
         break;
       default:
         break;
@@ -55,17 +55,17 @@ const Dice = ({ texts, diceColor, textColor }) => {
 
   return (
     <mesh ref={diceRef} onClick={handleClick} scale={2}>
-      {/* Cubo del dado */}
+      {/* Dice cube */}
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={diceColor} />
 
-      {/* Aristas negras */}
+      {/* Border black lines */}
       <lineSegments>
         <edgesGeometry attach="geometry" args={[new THREE.BoxGeometry(1, 1, 1)]} />
         <lineBasicMaterial attach="material" color="black" />
       </lineSegments>
 
-      {/* Side 1 (Front) */}
+      {/* Face 1 (Front) */}
       <Text
         position={[0, 0, 0.51]}
         fontSize={0.2}
@@ -80,7 +80,7 @@ const Dice = ({ texts, diceColor, textColor }) => {
         {texts[0]}
       </Text>
 
-      {/* Side 2 (Right) */}
+      {/* Face 2 (Right) */}
       <Text
         position={[0.51, 0, 0]}
         fontSize={0.2}
@@ -94,7 +94,7 @@ const Dice = ({ texts, diceColor, textColor }) => {
         {texts[1]}
       </Text>
 
-      {/* Side 3 (Top) */}
+      {/* Face 3 (Top) */}
       <Text
         position={[0, 0.51, 0]}
         fontSize={0.2}
@@ -108,7 +108,7 @@ const Dice = ({ texts, diceColor, textColor }) => {
         {texts[2]}
       </Text>
 
-      {/* Side 4 (Bottom) */}
+      {/* Face 4 (Bottom) */}
       <Text
         position={[0, -0.51, 0]}
         fontSize={0.2}
@@ -122,7 +122,7 @@ const Dice = ({ texts, diceColor, textColor }) => {
         {texts[3]}
       </Text>
 
-      {/* Side 5 (Left) */}
+      {/* Face 5 (Left) */}
       <Text
         position={[-0.51, 0, 0]}
         fontSize={0.2}
@@ -136,7 +136,7 @@ const Dice = ({ texts, diceColor, textColor }) => {
         {texts[4]}
       </Text>
 
-      {/* Side 6 (Back) */}
+      {/* Face 6 (Back) */}
       <Text
         position={[0, 0, -0.51]}
         fontSize={0.2}
